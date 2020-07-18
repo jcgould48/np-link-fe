@@ -15,7 +15,11 @@ class Signup extends Component {
     formSetting: {
       username: {
         name: "username",
+        type: "text",
         placeholder: "Enter username",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
         value: "",
         error: {
           message: "",
@@ -24,7 +28,51 @@ class Signup extends Component {
       },
       email: {
         name: "email",
+        type: "email",
         placeholder: "Enter email",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
+      profession: {
+        name: "profession",
+        type: "text",
+        placeholder: "What is your profession?",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
+      expertise: {
+        name: "expertise",
+        type: "text",
+        placeholder: "What is your area of expertise that you would like to share?",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
+ 
+      zip: {
+        name: "zip",
+        type: "text",
+        placeholder: "Zip code",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
         value: "",
         error: {
           message: "",
@@ -34,6 +82,9 @@ class Signup extends Component {
       password: {
         name: "password",
         placeholder: "Enter password",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
         value: "",
         error: {
           message: "",
@@ -173,7 +224,7 @@ class Signup extends Component {
   onSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password, username } = this.state.formConfig;
+    const { email, password, username, expertise, profession, zip} = this.state.formConfig;
 
     try {
       let inputForm = {
@@ -184,6 +235,9 @@ class Signup extends Component {
         email: email.value,
         password: password.value,
         username: username.value,
+        expertise: expertise.value,
+        profession: profession.value,
+        zip: zip.value,
       });
 
       successToast("Welcome, please login");
@@ -191,6 +245,9 @@ class Signup extends Component {
       inputForm["email"].value = "";
       inputForm["password"].value = "";
       inputForm["username"].value = "";
+      inputForm["expertise"].value = "";
+      inputForm["profession"].value = "";
+      inputForm["zip"].value = "";
 
       this.setState({
         ...this.state,
@@ -255,152 +312,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { signup })(Signup);
 
-/*
-
-
-import React, { Component } from "react";
-import validator from "validator";
-import InputGroup from "../shared/InputGroup";
-import ButtonGroup from "../shared/ButtonGroup";
-import "./Signup.css";
-
-export default class Signup extends Component {
-  state = {
-    canSubmit: true,
-    formSetting: {
-      email: {
-        name: "email",
-        placeholder: "Enter email",
-        value: "",
-        error: null,
-      },
-      password: {
-        name: "password",
-        placeholder: "Enter password",
-        value: "",
-        error: null,
-      },
-    },
-  };
-
-  checkInputValidation = (inputName, inputValue) => {
-    let validate = null;
-
-    switch (inputName) {
-      case "email":
-        let validatedEmail;
-        validatedEmail = validator.isEmail(inputValue);
-
-        if (!validatedEmail) {
-          validate = {};
-          validate.isValidated = validatedEmail;
-          validate.message = "It must be an email";
-        }
-        return validate;
-      case "password":
-        let validatedPhone;
-        validatedPhone = validator.matches(
-          inputValue,
-          "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-        );
-
-        if (!validatedPhone) {
-          validate = {};
-          validate.isValidated = validatedPhone;
-          validate.message =
-            "Minimum eight characters, at least one letter, one number and one special character";
-        }
-        return validate;
-      default:
-        return validate;
-    }
-  };
-
-  onChange = (event) => {
-    let inputForm = {
-      ...this.state.formSetting,
-    };
-
-    inputForm[event.target.name].value = event.target.value;
-    let isValidatedCheck = this.checkInputValidation(
-      event.target.name,
-      event.target.value
-    );
-
-    inputForm[event.target.name].error = isValidatedCheck;
-
-    if (isValidatedCheck && !isValidatedCheck.isValidated) {
-      this.setState({
-        canSubmit: true,
-      });
-      return;
-    }
-
-    if (
-      inputForm["email"].error === null &&
-      inputForm["password"].error === null
-    ) {
-      console.log("---");
-      this.setState({
-        canSubmit: false,
-      });
-      return;
-    } else {
-      this.setState({
-        ...this.state,
-        formConfig: inputForm,
-      });
-      return;
-    }
-  };
-
-  onSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  render() {
-    const { canSubmit, formSetting } = this.state;
-
-    let inputArray = [];
-
-    for (let key in formSetting) {
-      inputArray.push({
-        formSetting: formSetting[key],
-      });
-    }
-
-    return (
-      <div className="signup-container">
-        <h1>Sign up</h1>
-
-        <form className="signup-form" onSubmit={this.onSubmit}>
-          {inputArray.map((element) => {
-            const {
-              formSetting: { name, placeholder, value, error },
-            } = element;
-
-            return (
-              <InputGroup
-                key={name}
-                name={name}
-                placeholder={placeholder}
-                onChange={this.onChange}
-                value={value}
-                error={error}
-                type={name}
-              />
-            );
-          })}
-
-          <ButtonGroup
-            buttonStyle="form-button"
-            title="Sign up"
-            disabled={canSubmit}
-          />
-        </form>
-      </div>
-    );
-  }
-}
-
-*/

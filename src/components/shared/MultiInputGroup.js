@@ -1,9 +1,9 @@
 import React from "react";
 import ChipInputGroup from "./ChipInputGroup";
 import InputGroup from "./InputGroup";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const MultiInputGroup = (props) => {
   let multiInputField = null;
@@ -49,21 +49,21 @@ const MultiInputGroup = (props) => {
 
       break;
 
-    case "dateInput":
-      multiInputField = (
-        <>
-          <label style={{ color: "green" }}>Enter Friend's Birthday</label>
-          <br />
-          <DatePicker
-            className="birthday--input-date"
-            name={props.name}
-            selected={props.startDate}
-            onChange={props.handleOnChange.inputOnChange}
-          />
-        </>
-      );
+    // case "dateInput":
+    //   multiInputField = (
+    //     <>
+    //       <label style={{ color: "green" }}>Enter Friend's Birthday</label>
+    //       <br />
+    //       <DatePicker
+    //         className="birthday--input-date"
+    //         name={props.name}
+    //         selected={props.startDate}
+    //         onChange={props.handleOnChange.inputOnChange}
+    //       />
+    //     </>
+    //   );
 
-      break;
+      // break;
     case "chipInput":
       multiInputField = (
         <ChipInputGroup

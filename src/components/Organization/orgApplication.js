@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import validator from "validator";
-import ButtonGroup from "../../shared/ButtonGroup";
+import ButtonGroup from "../shared/ButtonGroup";
 
-import MultiInputGroup from "../../shared/MultiInputGroup";
-import { createBirthday } from "../../../redux/actions/birthdayAction";
-import { successToast, failureToast } from "../../Toastify/Toast";
+import MultiInputGroup from "../shared/MultiInputGroup";
+import { createOrganization } from "../../redux/actions/organizationAction";
+import { successToast, failureToast } from "../Toastify/Toast";
 
-import "./CreateBirthday.css";
-
-export class CreateBirthday extends Component {
+export class CreateOrganization extends Component {
   constructor(props) {
     super(props);
     this.state = {
       canSubmit: true,
       formSetting: {
-        firstName: {
-          name: "firstName",
+        orgName: {
+          name: "orgName",
           type: "text",
-          placeholder: "Enter first Name",
+          placeholder: "Enter Organization's Name",
           handleOnChange: {
             inputOnChange: this.handleOnChange,
           },
@@ -28,10 +26,23 @@ export class CreateBirthday extends Component {
             noError: null,
           },
         },
-        lastName: {
-          name: "lastName",
+        pitch: {
+          name: "pitch",
           type: "text",
-          placeholder: "Enter Last Name",
+          placeholder: "Enter 1-2 sentence pitch ",
+          handleOnChange: {
+            inputOnChange: this.handleOnChange,
+          },
+          value: "",
+          error: {
+            message: "",
+            noError: null,
+          },
+        },
+        description: {
+          name: "description",
+          type: "text",
+          placeholder: "Describe your organization",
           handleOnChange: {
             inputOnChange: this.handleOnChange,
           },
@@ -54,28 +65,22 @@ export class CreateBirthday extends Component {
             noError: null,
           },
         },
-        phone: {
-          name: "phone",
-          type: "phone",
-          placeholder: "Enter Mobile",
-          handleOnChange: {
-            inputOnChange: this.handleOnChange,
-          },
-          value: "",
-          error: {
-            message: "",
-            noError: null,
-          },
-        },
-        dateInput: {
-          name: "dateInput",
-          type: "dateInput",
-          startDate: new Date(),
-          value: "",
-          handleOnChange: {
-            inputOnChange: this.handleOnDateChange,
-          },
-        },
+    
+        // helpNeeded: {
+        //   name: "helpNeeded",
+        //   type: "text",
+        //   placeholder: "What sort of professional help are you seeking?",
+        //   // valueArray: [],
+        //   handleOnChange: {
+        //     inputOnChange: this.handleOnChange,
+        //   },
+        //   value: "",
+        //   error: {
+        //     message: "",
+        //     noError: null,
+        //   },
+        // },
+       
         chipInput: {
           name: "chipInput",
           type: "chipInput",
@@ -95,11 +100,11 @@ export class CreateBirthday extends Component {
         },
       },
       validate: {
-        firstNameError: {
+        orgNameError: {
           noError: null,
           message: "",
         },
-        lastNameError: {
+        descriptionError: {
           noError: null,
           message: "",
         },
@@ -107,41 +112,59 @@ export class CreateBirthday extends Component {
           noError: null,
           message: "",
         },
-        phoneError: {
+        pitchError: {
           noError: null,
           message: "",
         },
+        helpNeededError: {
+          noError: null,
+          message: "",
+        },
+  
       },
     };
   }
 
   checkInputValidation = (errorState, inputName, inputValue) => {
     switch (inputName) {
-      case "firstName":
-        let validatedFirstName;
-        validatedFirstName = validator.isEmpty(inputValue);
+      case "orgName":
+        let validatedOrgName;
+        validatedOrgName = validator.isEmpty(inputValue);
 
-        if (validatedFirstName) {
-          errorState.firstNameError.noError = false;
-          errorState.firstNameError.message = "Cannot be empty";
+        if (validatedOrgName) {
+          errorState.orgNameError.noError = false;
+          errorState.orgNameError.message = "Cannot be empty";
           return errorState;
         } else {
-          errorState.firstNameError.noError = true;
-          errorState.firstNameError.message = "";
+          errorState.orgNameError.noError = true;
+          errorState.orgNameError.message = "";
           return errorState;
         }
 
-      case "lastName":
-        let validatedLastName;
-        validatedLastName = validator.isEmpty(inputValue);
+      case "pitch":
+        let validatedPitch;
+        validatedPitch = validator.isEmpty(inputValue);
 
-        if (validatedLastName) {
-          errorState.lastNameError.noError = false;
-          errorState.lastNameError.message = "Cannot be empty";
+        if (validatedPitch) {
+          errorState.pitchError.noError = false;
+          errorState.pitchError.message = "Cannot be empty";
           return errorState;
         } else {
-          errorState.lastNameError.noError = true;
-          errorState.lastNameError.message = "";
+          errorState.pitchError.noError = true;
+          errorState.pitchError.message = "";
+          return errorState;
+        }
+      case "description":
+        let validatedDescription;
+        validatedDescription = validator.isEmpty(inputValue);
+
+        if (validatedDescription) {
+          errorState.descriptionError.noError = false;
+          errorState.descriptionError.message = "Cannot be empty";
+          return errorState;
+        } else {
+          errorState.descriptionError.noError = true;
+          errorState.descriptionError.message = "";
           return errorState;
         }
       case "email":
@@ -157,19 +180,19 @@ export class CreateBirthday extends Component {
           errorState.emailError.message = "";
           return errorState;
         }
-      case "phone":
-        let validatedNumber;
-        validatedNumber = validator.isMobilePhone(inputValue);
+      // case "helpNeeded":
+      //   let validatedHelpNeeded;
+      //   validatedHelpNeeded = validator.isEmpty(inputValue);
 
-        if (!validatedNumber) {
-          errorState.phoneError.noError = false;
-          errorState.phoneError.message = "Please enter a real number";
-          return errorState;
-        } else {
-          errorState.phoneError.noError = true;
-          errorState.phoneError.message = "";
-          return errorState;
-        }
+      //   if (!validatedHelpNeeded) {
+      //     errorState.helpNeededError.noError = false;
+      //     errorState.helpNeededError.message = "Can not be empty";
+      //     return errorState;
+      //   } else {
+      //     errorState.helpNeededError.noError = true;
+      //     errorState.helpNeededError.message = "";
+      //     return errorState;
+      //   }
       default:
         return errorState;
     }
@@ -188,10 +211,11 @@ export class CreateBirthday extends Component {
       event.target.value
     );
 
-    inputForm["firstName"].error = isValidatedCheck.firstNameError;
-    inputForm["lastName"].error = isValidatedCheck.lastNameError;
+    inputForm["orgName"].error = isValidatedCheck.orgNameError;
+    inputForm["pitch"].error = isValidatedCheck.pitchError;
+    inputForm["description"].error = isValidatedCheck.descriptionError;
     inputForm["email"].error = isValidatedCheck.emailError;
-    inputForm["phone"].error = isValidatedCheck.phoneError;
+    // inputForm["helpNeeded"].error = isValidatedCheck.helpNeededError;
 
     this.setState({
       ...this.state,
@@ -199,10 +223,11 @@ export class CreateBirthday extends Component {
     });
 
     if (
-      inputForm["firstName"].error.noError === false ||
-      inputForm["lastName"].error.noError === false ||
-      inputForm["email"].error.noError === false ||
-      inputForm["phone"].error.noError === false
+      inputForm["orgName"].error.noError === false ||
+      inputForm["pitch"].error.noError === false ||
+      inputForm["description"].error.noError === false ||
+      inputForm["email"].error.noError === false 
+      // inputForm["helpNeeded"].error.noError === false
     ) {
       this.setState({
         canSubmit: true,
@@ -211,10 +236,11 @@ export class CreateBirthday extends Component {
     }
 
     if (
-      inputForm["firstName"].error.noError === true &&
-      inputForm["lastName"].error.noError === true &&
-      inputForm["email"].error.noError === true &&
-      inputForm["phone"].error.noError === true
+      inputForm["orgName"].error.noError === true &&
+      inputForm["pitch"].error.noError === true &&
+      inputForm["description"].error.noError === true &&
+      inputForm["email"].error.noError === true 
+      // inputForm["helpNeeded"].error.noError === true
     ) {
       this.setState({
         canSubmit: false,
@@ -229,18 +255,6 @@ export class CreateBirthday extends Component {
     }
   };
 
-  handleOnDateChange = (date) => {
-    let inputForm = {
-      ...this.state.formSetting,
-    };
-
-    inputForm["dateInput"].startDate = date;
-
-    this.setState({
-      ...this.state,
-      formSetting: inputForm,
-    });
-  };
 
   handleAddChip = (chip) => {
     let inputForm = {
@@ -274,40 +288,41 @@ export class CreateBirthday extends Component {
     });
   };
 
-  handleBirthdaySubmit = async (e) => {
+  handleApplicationSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("HERE")
     try {
       const {
         chipInput,
-        dateInput,
-        firstName,
-        lastName,
+        orgName,
+        pitch,
+        description,
+        // helpNeeded,
         email,
-        phone,
       } = this.state.formSetting;
 
       let userObj = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        birthday: dateInput.startDate,
-        interests: chipInput.valueArray,
-        mobile: phone.value,
+        orgName: orgName.value,
+        pitch: pitch.value,
+        description: description.value,
+        hashTags: chipInput.valueArray,
+        // helpNeeded: helpNeeded.value,
         email: email.value,
       };
+      console.log("userObj", userObj)
 
-      await this.props.createBirthday(userObj);
+      await this.props.createOrganization(userObj);
 
       let inputForm = {
         ...this.state.formSetting,
       };
 
-      inputForm["firstName"].value = "";
-      inputForm["lastName"].value = "";
-      inputForm["dateInput"].startDate = new Date();
+      inputForm["orgName"].value = "";
+      inputForm["pitch"].value = "";
+      inputForm["description"].value = "";
+      // inputForm["helpNeeded"].value = "";
       inputForm["chipInput"].valueArray = [];
       inputForm["email"].value = "";
-      inputForm["phone"].value = "";
 
       this.setState({
         ...this.state,
@@ -331,7 +346,7 @@ export class CreateBirthday extends Component {
     return (
       <div className="birthday">
         <div className="birthday--input-container">
-          <form className="signup-form" onSubmit={this.handleBirthdaySubmit}>
+          <form className="signup-form" onSubmit={this.handleApplicationSubmit}>
             {inputArray.map((element) => {
               const {
                 formSetting: {
@@ -365,6 +380,8 @@ export class CreateBirthday extends Component {
               buttonStyle="form-button"
               title="Submit"
               disabled={canSubmit}
+            //   variant="contained"
+            // color="primary"
             />
           </form>
         </div>
@@ -373,4 +390,4 @@ export class CreateBirthday extends Component {
   }
 }
 
-export default connect(null, { createBirthday })(CreateBirthday);
+export default connect(null, { createOrganization })(CreateOrganization);
