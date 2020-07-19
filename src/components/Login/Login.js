@@ -148,7 +148,7 @@ class Login extends Component {
 
       successToast("Welcome Back!");
 
-      this.props.history.push("/birthday");
+      this.props.history.push("/organization-selector");
     } catch (e) {
       failureToast(e);
     }

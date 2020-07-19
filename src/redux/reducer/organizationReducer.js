@@ -2,7 +2,9 @@ import {
     CREATE_ORGANIZATION,
     GET_ALL_ORGANIZATIONS,
     MARK_INTERESTED,
-    MARK_NOT_INTERESTED
+    MARK_NOT_INTERESTED,
+    DELETE_ORGANIZATION,
+    APPROVE_ORGANIZATION
     
   } from "../actionTypes/organizationActionType";
   
@@ -32,22 +34,57 @@ import {
           });
         return {
           ...state,
-          rentalItems: mapper
+          organizations: mapper
           };
-      case MARK_NOT_INTERESTED:
-        let mapper2 = state.organizations.map(item => {
+        case MARK_NOT_INTERESTED:
+          let mapper2 = state.organizations.map(item => {
+              if (item._id === action.payload._id) {
+                return {
+                  ...item,
+                  availability:false,
+                }
+              }
+              return item
+            });
+          return {
+            ...state,
+            organizations: mapper2
+            };
+      case DELETE_ORGANIZATION:
+        return {
+          ...state,
+          organizations: state.createdItems.filter(
+               (item)=> item._id !== action.payload._id)
+        };
+      // case EDIT_ORGANIZATION:
+      //   let mapper2 = state.organizations.map(item => {
+      //       if (item._id === action.payload._id) {
+      //         return {
+      //           ...item,
+      //           availability:false,
+      //         }
+      //       }
+      //       return item
+      //     });
+        // return {
+        //   ...state,
+        //   rentalItems: mapper2
+        //   };
+      case APPROVE_ORGANIZATION:
+        let approver = state.organizations.map(item => {
             if (item._id === action.payload._id) {
               return {
                 ...item,
-                availability:false,
+                approved:true,
               }
             }
             return item
           });
         return {
           ...state,
-          rentalItems: mapper2
+          organizations: approver
           };
+      
       default:
         return state;
     }

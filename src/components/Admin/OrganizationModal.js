@@ -1,20 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { parseISO } from "date-fns";
-// import DatePicker from "react-datepicker";
-
 import ChipInput from "material-ui-chip-input";
 import Modal from "react-modal";
 
-// import addDays from "date-fns/addDays";
-// import setMinutes from "date-fns/setMinutes";
-// import setHours from "date-fns/setHours";
-
 import ButtonGroup from "../shared/ButtonGroup";
-// import {
-//   sendBirthdayTextNow,
-//   sendScheduledBirthdayText,
-// } from "../../../redux/actions/birthdayAction";
+import { deleteOrganization,  approveOrganization } from "../../redux/actions/organizationAction";
 import { successToast, failureToast } from "../Toastify/Toast"
 // import "react-datepicker/dist/react-datepicker.css";
 
@@ -33,6 +23,61 @@ const customStyles = {
 };
 
 class OrganizationModal extends Component {
+  
+  handleDelete = async () => {
+    try {
+        // console.log("Next step", this.props._id)
+        await this.props.deleteOrganization(this.props._id);
+
+      successToast("Item Deleted!");
+    } catch (e) {
+      failureToast(e);
+    }
+}
+// handleEdit= async (e) => {
+//   e.preventDefault();
+//   console.log("HERE")
+//   try {
+//     const {
+//       chipInput,
+//       orgName,
+//       pitch,
+//       description,
+//       // helpNeeded,
+//       email,
+//     } = this.state.formSetting;
+
+//     let userObj = {
+//       orgName: orgName.value,
+//       pitch: pitch.value,
+//       description: description.value,
+//       hashTags: chipInput.valueArray,
+//       // helpNeeded: helpNeeded.value,
+//       email: email.value,
+//     };
+//     console.log("userObj", userObj)
+
+//     await this.props.editOrganization(userObj);
+
+   
+//   } catch (e) {
+//     failureToast(e);
+//   }
+// };
+  handleApprove = async (item) => {
+    let orgObj = {
+      _id: this.props._id,
+    };
+    console.log("module", orgObj)
+    try{
+      
+      await this.props.approveOrganization(orgObj);
+      successToast("Organization Approved")
+    } catch (e) {
+        failureToast(e);
+      };
+    }
+
 
   render() {
     const {
@@ -43,7 +88,7 @@ class OrganizationModal extends Component {
     description,
     email,
     helpNeeded,
-    keyWords,
+    hashTags,
     chipInput,
     _id,
     } = this.props;
@@ -60,55 +105,47 @@ class OrganizationModal extends Component {
             <th>Pitch</th>
             <th>Email</th>
             <th>Help Needed</th>
-            <th>Description</th>
+            {/* <th>Description</th> */}
             <th>Interests Tags</th>
-              <th>Schedule</th>
-              <th>Send Now</th>
             </tr>
             <tr key={_id}>
               <td>{orgName}</td>
               <td>{pitch}</td>
-              {/* <td>
-                <DatePicker
-                  className="birthday--input-date-list"
-                  selected={parseISO(birthday)}
-                  disabled
-                />
-              </td> */}
               <td>{email}</td>
               <td>{helpNeeded}</td>
               <td>
                 <ChipInput
                   className="birthday--chip"
-                  value={keyWords}
+                  value={hashTags}
                   disabled
                 />
               </td>
-              {/* <td>
-                <DatePicker
-                  className="birthday--input-date-list"
-                  selected={this.state.scheduleDateAndTime}
-                  onChange={this.handleScheduleChange}
-                  minDate={new Date()}
-                  maxDate={addDays(new Date(), 30)}
-                  minTime={setMinutes(new Date(), new Date().getMinutes())}
-                  maxTime={setHours(setMinutes(new Date(), 59), 23)}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={1}
-                  timeCaption="time"
-                  dateFormat="MMMM d, yyyy h:mm aa"
-                  locale="en"
-                />
-              </td>
               <td>
-                <ButtonGroup
-                  title="Send Message"
-                  buttonStyle="form-button edit-button"
-                  disabled={false}
-                  onClick={this.handleSubmitSchedule}
-                />
-              </td> */}
+                      <ButtonGroup
+                        title="Approve"
+                        style={{ backgroundColor: "blue" }}
+                        buttonStyle="form-button edit-button"
+                        disabled={false}
+                        onClick={this.handleApprove}
+                      />
+                    </td>
+              <td>
+                      <ButtonGroup
+                        title="Edit"
+                        style={{ backgroundColor: "blue" }}
+                        buttonStyle="form-button edit-button"
+                        disabled={false}
+                        onClick={this.handelEdit}
+                      />
+                    </td>
+                    <td>
+                      <ButtonGroup
+                        title="Delete"
+                        buttonStyle="form-button form-button-delete edit-button"
+                        disabled={false}
+                        onClick={this.handleDelete}
+                      />
+                    </td>
             </tr>
           </tbody>
         </table>
@@ -118,5 +155,5 @@ class OrganizationModal extends Component {
 }
 
 export default connect(null, {
-  
+  deleteOrganization, approveOrganization
 })(OrganizationModal);

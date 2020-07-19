@@ -308,6 +308,7 @@ export class CreateOrganization extends Component {
         hashTags: chipInput.valueArray,
         // helpNeeded: helpNeeded.value,
         email: email.value,
+        approved: false,
       };
       console.log("userObj", userObj)
 

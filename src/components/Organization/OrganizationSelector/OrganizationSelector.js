@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllOrganizations, interestedOrg, notInterestedOrg} from "../../../redux/actions/organizationAction";
 import { successToast, failureToast } from "../../Toastify/Toast";
-import ButtonGroup from "../../SharedGroup/ButtonGroup";
-
+import ButtonGroup from "../../shared/ButtonGroup";
 
 
 
@@ -14,6 +13,7 @@ class OrganizationSelector extends Component {
       this.props.authUser.isAuthenticated &&
       this.props.authUser.user !== null
     ) {
+      console.log("step1")
       await this.props.getAllOrganizations();
     }
   }
@@ -55,32 +55,33 @@ class OrganizationSelector extends Component {
           {this.props.organization.organizations.length > 0
             ? this.props.organization.organizations.map((orgCard) => {
                 const {
-                //   itemName,
-                //   rentAmount,
-                //   description,
-                //   availability,
-                //   _id
+                  orgName,
+                  pitch,
+                  description,
+                  helpNeeded,
+                  _id
                 } = orgCard;
-                // console.log("ITEMCARD", itemCard);
+                console.log("ITEMCARD", orgCard);
                 return (
         <div className="card" key={_id}>
             <img className="card-img-top" src="/images/logo.png" alt="Card image cap" style={{width:"210px", justifyContent:"center"}} />
             <div className="card-body">
-                <h5 className="card-title">{itemName}</h5>
-                <p className="card-text">Weekly Price: ${rentAmount}</p>
+                <h5 className="card-title">{orgName}</h5>
+                <p className="card-text">{pitch}</p>
                 <p className="card-text">Description: {description}</p>
+                <p className="card-text">Help Needed: {helpNeeded}</p>
                 
                 <ButtonGroup
                 buttonStyle="form-button-rent"
                 className="btn btn-outline-primary"
-                title="Rent Now!"
+                title="Interested!"
                 onClick={() => this.handleInterested(orgCard)}
               />
               
               <ButtonGroup
                 buttonStyle="form-button-wait"
                 className="btn btn-primary"
-                title="Waiting List"
+                title="Not Interested"
                 onClick={() => this.handleNotInterested(orgCard)}
               />
                 

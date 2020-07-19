@@ -55,53 +55,26 @@ export class EditOrganizations extends Component {
             <tbody>
               <tr>
                 <th>Organization Name</th>
-                <th>Pitch</th>
                 <th>Email</th>
                 <th>Help Needed</th>
-                <th>Description</th>
+                <th>Pitch</th>
                 <th>Key Word Tags</th>
                 <th>Edit</th>
+                <th>Approve</th>
                 <th>Delete</th>
               </tr>
               {this.props.organization.organizations.map((item) => {
                 const {
                   orgName,
                   pitch,
-                  description,
-                  email,
                   helpNeeded,
-                  keyWords,
-                  chipInput,
                   _id,
                 } = item;
                 return (
                   <tr key={_id}>
                     <td>{orgName}</td>
-                    <td>{email}</td>
-                    {/* <td>
-                      <DatePicker
-                        className="birthday--input-date-list"
-                        selected={parseISO(birthday)}
-                        disabled
-                      />
-                    </td> */}
-                    <td>{helpNeeded}</td>
                     <td>{pitch}</td>
-                    <td>
-                      <ChipInput
-                        className="birthday--chip"
-                        value={keyWords}
-                        disabled
-                      />
-                    </td>
-                    {/* <td>
-                      <ButtonGroup
-                        title="Send Message"
-                        buttonStyle="form-button edit-button"
-                        disabled={false}
-                        onClick={() => this.onModalOpen(item)}
-                      />
-                    </td> */}
+                    <td>{helpNeeded}</td>
                     <td>
                       <ButtonGroup
                         title="Edit"

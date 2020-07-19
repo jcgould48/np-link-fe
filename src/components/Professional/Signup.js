@@ -68,7 +68,7 @@ class Signup extends Component {
  
       zip: {
         name: "zip",
-        type: "text",
+        type: "number",
         placeholder: "Zip code",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
@@ -254,6 +254,8 @@ class Signup extends Component {
         formSetting: inputForm,
         onSubmit: false,
       });
+      this.props.history.push("/");
+
     } catch (e) {
       failureToast(e);
     }

@@ -11,7 +11,9 @@ const Login = React.lazy(() => import("./components/Login/Login"));
 const Signup = React.lazy(() => import("./components/Professional/Signup"));
 const MainProfessional = React.lazy(() => import("./components/Professional/MainProfessional"));
 const Signup2 = React.lazy(() => import("./components/Professional/Signup2"));
+const UserForm = React.lazy(() => import("./components/AAA/UserForm"));
 const OrgApplication = React.lazy(() => import("./components/Organization/OrgApplication"));
+const OrganizationSelector = React.lazy(() => import("./components/Organization/OrganizationSelector/OrganizationSelector"));
 const AuthOrganization = React.lazy(() => import("./components/Admin/AuthOrganization"));
 const NotFound = React.lazy(() => import("./components/NotFound/NotFound"));
 
@@ -23,10 +25,12 @@ export default class MainRouter extends Component {
         <Toastify />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/sign-up" component={MainProfessional} />
+          <Route exact path="/sign-up" component={Signup} />
           <Route exact path="/sign-up2" component={Signup2} />
+          <Route exact path="/user-form" component={UserForm} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/auth-org" component={AuthOrganization} />
+          <Route exact path="/organization-selector" component={OrganizationSelector} />
           <Route exact path="/org-application" component={OrgApplication} />
           <Route exact component={NotFound} />
         </Switch>

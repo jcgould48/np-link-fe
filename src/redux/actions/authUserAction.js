@@ -66,3 +66,17 @@ export const logout = () => (dispatch) => {
     type: AUTH_USER_LOGOUT,
   });
 };
+
+export const testSignup = (userInfo) => async (dispatch) => {
+  try {
+    console.log("New User Form", userInfo)
+    await Axios.post("/api/users/sign-up", userInfo);
+    return Promise.resolve();
+  } catch (e) {
+    if (e.message) {
+      return Promise.reject(e.message);
+    } else {
+      return Promise.reject(e.response.data.message);
+    }
+  }
+};
