@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
-import ChipInput from "material-ui-chip-input";
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -29,23 +28,31 @@ export class FormPersonalDetails extends Component {
           >
             <AppBar title="Enter Personal Details" />
             <TextField
-              placeholder="Enter One Line Pitch"
-              label="Pitch"
-              onChange={handleChange('pitch')}
-              defaultValue={values.pitch}
+              placeholder="Enter Your Profession"
+              label="Profession"
+              onChange={handleChange('profession')}
+              defaultValue={values.profession}
               margin="normal"
               fullWidth
             />
             <br />
             <TextField
-              placeholder="Enter A Description Of The Organization"
-              label="Descritpion"
-              onChange={handleChange('description')}
-              defaultValue={values.description}
+              placeholder="Enter Your Zip Code"
+              label="Zip Code"
+              onChange={handleChange('zip')}
+              defaultValue={values.zip}
               margin="normal"
               fullWidth
             />
-          
+            <br />
+            <TextField
+              placeholder="Enter Your Areas of Expertise"
+              label="Expertise"
+              onChange={handleChange('expertise')}
+              defaultValue={values.expertise}
+              margin="normal"
+              fullWidth
+            />
             <br />
 
             <Button

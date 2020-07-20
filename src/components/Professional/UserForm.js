@@ -4,15 +4,16 @@ import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './Confirm';
 import Success from './Success';
+import Login from '../Login/Login';
 
 export class UserForm extends Component {
   state = {
     step: 1,
     formSetting: {
-      orgName: {
-        name: "orgName",
+      firstName: {
+        name: "firstName",
         type: "text",
-        placeholder: "Enter Organization's Name",
+        placeholder: "Enter first name",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -22,36 +23,10 @@ export class UserForm extends Component {
           noError: null,
         },
       },
-      orgName: {
-        name: "poc",
+      lastName: {
+        name: "lastName",
         type: "text",
-        placeholder: "Enter Organization's Point of Contact",
-        handleOnChange: {
-          inputOnChange: this.handleOnChange,
-        },
-        value: "",
-        error: {
-          message: "",
-          noError: null,
-        },
-      },
-      pitch: {
-        name: "pitch",
-        type: "text",
-        placeholder: "Enter 1-2 sentence pitch ",
-        handleOnChange: {
-          inputOnChange: this.handleOnChange,
-        },
-        value: "",
-        error: {
-          message: "",
-          noError: null,
-        },
-      },
-      description: {
-        name: "description",
-        type: "text",
-        placeholder: "Describe your organization",
+        placeholder: "Enter last name",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -64,7 +39,7 @@ export class UserForm extends Component {
       email: {
         name: "email",
         type: "email",
-        placeholder: "Enter Email",
+        placeholder: "Enter email",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -74,10 +49,37 @@ export class UserForm extends Component {
           noError: null,
         },
       },
+      profession: {
+        name: "profession",
+        type: "text",
+        placeholder: "What is your profession?",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
+      expertise: {
+        name: "expertise",
+        type: "text",
+        placeholder: "What is your area of expertise that you would like to share?",
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
+ 
       zip: {
         name: "zip",
-        type: "zip",
-        placeholder: "Enter Zip Code of Business",
+        type: "number",
+        placeholder: "Zip code",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -87,34 +89,13 @@ export class UserForm extends Component {
           noError: null,
         },
       },
-  
-      // helpNeeded: {
-      //   name: "helpNeeded",
-      //   type: "text",
-      //   placeholder: "What sort of professional help are you seeking?",
-      //   // valueArray: [],
-      //   handleOnChange: {
-      //     inputOnChange: this.handleOnChange,
-      //   },
-      //   value: "",
-      //   error: {
-      //     message: "",
-      //     noError: null,
-      //   },
-      // },
-     
-      chipInput: {
-        name: "chipInput",
-        type: "chipInput",
-        placeholder: "Enter Tags",
-        value: "",
-        valueArray: [],
+      password: {
+        name: "password",
+        placeholder: "Enter password",
         handleOnChange: {
-          inputOnChange: {
-            handleAddChip: this.handleAddChip,
-            handleDeleteChip: this.handleDeleteChip,
-          },
+          inputOnChange: this.handleOnChange,
         },
+        value: "",
         error: {
           message: "",
           noError: null,
@@ -122,11 +103,7 @@ export class UserForm extends Component {
       },
     },
     validate: {
-      orgNameError: {
-        noError: null,
-        message: "",
-      },
-      descriptionError: {
+      usernameError: {
         noError: null,
         message: "",
       },
@@ -134,15 +111,10 @@ export class UserForm extends Component {
         noError: null,
         message: "",
       },
-      pitchError: {
+      passwordError: {
         noError: null,
         message: "",
       },
-      helpNeededError: {
-        noError: null,
-        message: "",
-      },
-
     },
   };
 
@@ -164,44 +136,21 @@ export class UserForm extends Component {
 
   checkInputValidation = (errorState, inputName, inputValue) => {
     switch (inputName) {
-      case "orgName":
-        let validatedOrgName;
-        validatedOrgName = validator.isEmpty(inputValue);
+      case "username":
+        let validatedUsername;
+        validatedUsername = validator.matches(
+          inputValue,
+          /^[a-zA-Z0-9]{1,20}$/
+        );
 
-        if (validatedOrgName) {
-          errorState.orgNameError.noError = false;
-          errorState.orgNameError.message = "Cannot be empty";
+        if (!validatedUsername) {
+          errorState.usernameError.noError = validatedUsername;
+          errorState.usernameError.message =
+            "cannot contain special characters and minimum of 2 and maximum of 20 characters";
           return errorState;
         } else {
-          errorState.orgNameError.noError = true;
-          errorState.orgNameError.message = "";
-          return errorState;
-        }
-
-      case "pitch":
-        let validatedPitch;
-        validatedPitch = validator.isEmpty(inputValue);
-
-        if (validatedPitch) {
-          errorState.pitchError.noError = false;
-          errorState.pitchError.message = "Cannot be empty";
-          return errorState;
-        } else {
-          errorState.pitchError.noError = true;
-          errorState.pitchError.message = "";
-          return errorState;
-        }
-      case "description":
-        let validatedDescription;
-        validatedDescription = validator.isEmpty(inputValue);
-
-        if (validatedDescription) {
-          errorState.descriptionError.noError = false;
-          errorState.descriptionError.message = "Cannot be empty";
-          return errorState;
-        } else {
-          errorState.descriptionError.noError = true;
-          errorState.descriptionError.message = "";
+          errorState.usernameError.noError = validatedUsername;
+          errorState.usernameError.message = "";
           return errorState;
         }
       case "email":
@@ -209,27 +158,35 @@ export class UserForm extends Component {
         validatedEmail = validator.isEmail(inputValue);
 
         if (!validatedEmail) {
-          errorState.emailError.noError = false;
-          errorState.emailError.message = "Please enter a valid email";
+          errorState.emailError.noError = validatedEmail;
+          errorState.emailError.message = "It must be an email";
           return errorState;
         } else {
-          errorState.emailError.noError = true;
+          errorState.emailError.noError = validatedEmail;
           errorState.emailError.message = "";
           return errorState;
         }
-      // case "helpNeeded":
-      //   let validatedHelpNeeded;
-      //   validatedHelpNeeded = validator.isEmpty(inputValue);
 
-      //   if (!validatedHelpNeeded) {
-      //     errorState.helpNeededError.noError = false;
-      //     errorState.helpNeededError.message = "Can not be empty";
-      //     return errorState;
-      //   } else {
-      //     errorState.helpNeededError.noError = true;
-      //     errorState.helpNeededError.message = "";
-      //     return errorState;
-      //   }
+      case "password":
+        // let validatedPassword;
+        // validatedPassword = validator.matches(
+        //   inputValue,
+        //   "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        // );
+
+        let validatedPassword = true;
+
+        if (!validatedPassword) {
+          errorState.passwordError.noError = validatedPassword;
+          errorState.passwordError.message =
+            "Minimum eight characters, at least one letter, one number and one special character";
+          return errorState;
+        } else {
+          errorState.passwordError.noError = validatedPassword;
+          errorState.passwordError.message = "";
+          return errorState;
+        }
+
       default:
         return errorState;
     }
@@ -290,8 +247,8 @@ export class UserForm extends Component {
 
   render() {
     const { step } = this.state;
-    const { orgName,poc, email, helpNeeded,pitch, description, zip, chipInput } = this.state;
-    const values = { orgName,poc, email, helpNeeded,pitch, description, zip, chipInput };
+    const { firstName, lastName, email, password, profession, zip, expertise } = this.state;
+    const values = { firstName, lastName, email, password, profession, zip, expertise };
 
     switch (step) {
       case 1:
@@ -321,6 +278,8 @@ export class UserForm extends Component {
         );
       case 4:
         return <Success />;
+      case 5:
+        return <Login />;
       default:
        
     }

@@ -27,21 +27,21 @@ export class FormPersonalDetails extends Component {
             fullWidth
             maxWidth='sm'
           >
-            <AppBar title="Enter Personal Details" />
+            <AppBar title="Enter Type Of Professional Help Needed" />
             <TextField
-              placeholder="Enter One Line Pitch"
-              label="Pitch"
-              onChange={handleChange('pitch')}
-              defaultValue={values.pitch}
+              placeholder="Enter Type Of Professional Help Needed"
+              label="Help Needed"
+              onChange={handleChange('helpNeeded')}
+              defaultValue={values.helpNeeded}
               margin="normal"
               fullWidth
             />
             <br />
             <TextField
-              placeholder="Enter A Description Of The Organization"
-              label="Descritpion"
-              onChange={handleChange('description')}
-              defaultValue={values.description}
+              placeholder="Enter Tags Related To The Organization"
+              label="Hash Tags"
+              onChange={handleChange('chipInput')}
+              defaultValue={values.chipInput}
               margin="normal"
               fullWidth
             />

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import validator from "validator";
-import FormUserDetails from './FormUserDetails';
-import FormPersonalDetails from './FormPersonalDetails';
+import FormOrganizationDetails from './FormOrganizationDetails';
+import FormDescription from './FormDescription';
+import FormHelpNeeded from './FormHelpNeeded';
 import Confirm from './Confirm';
 import Success from './Success';
+
 
 export class UserForm extends Component {
   state = {
@@ -88,20 +90,20 @@ export class UserForm extends Component {
         },
       },
   
-      // helpNeeded: {
-      //   name: "helpNeeded",
-      //   type: "text",
-      //   placeholder: "What sort of professional help are you seeking?",
-      //   // valueArray: [],
-      //   handleOnChange: {
-      //     inputOnChange: this.handleOnChange,
-      //   },
-      //   value: "",
-      //   error: {
-      //     message: "",
-      //     noError: null,
-      //   },
-      // },
+      helpNeeded: {
+        name: "helpNeeded",
+        type: "text",
+        placeholder: "What sort of professional help are you seeking?",
+        // valueArray: [],
+        handleOnChange: {
+          inputOnChange: this.handleOnChange,
+        },
+        value: "",
+        error: {
+          message: "",
+          noError: null,
+        },
+      },
      
       chipInput: {
         name: "chipInput",
@@ -296,7 +298,7 @@ export class UserForm extends Component {
     switch (step) {
       case 1:
         return (
-          <FormUserDetails
+          <FormOrganizationDetails
             nextStep={this.nextStep}
             handleChange={this.handleChange}
             values={values}
@@ -304,7 +306,7 @@ export class UserForm extends Component {
         );
       case 2:
         return (
-          <FormPersonalDetails
+          <FormDescription
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             handleChange={this.handleChange}
@@ -313,13 +315,22 @@ export class UserForm extends Component {
         );
       case 3:
         return (
+          <FormHelpNeeded
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 4:
+        return (
           <Confirm
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             values={values}
           />
         );
-      case 4:
+      case 5:
         return <Success />;
       default:
        

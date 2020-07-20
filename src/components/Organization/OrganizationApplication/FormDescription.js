@@ -39,7 +39,7 @@ export class FormPersonalDetails extends Component {
             <br />
             <TextField
               placeholder="Enter A Description Of The Organization"
-              label="Descritpion"
+              label="Description"
               onChange={handleChange('description')}
               defaultValue={values.description}
               margin="normal"

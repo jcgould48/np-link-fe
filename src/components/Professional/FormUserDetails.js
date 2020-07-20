@@ -23,19 +23,19 @@ export class FormUserDetails extends Component {
           >
             <AppBar title="Enter User Details" />
             <TextField
-              placeholder="Enter Nonprofit's Name"
-              label="Nonprofit Name"
-              onChange={handleChange('orgName')}
-              defaultValue={values.orgName}
+              placeholder="Enter Your First Name"
+              label="First Name"
+              onChange={handleChange('firstName')}
+              defaultValue={values.firstName}
               margin="normal"
               fullWidth
             />
             <br />
             <TextField
-              placeholder="Enter The Point of Contact"
-              label="Point of Contact"
-              onChange={handleChange('poc')}
-              defaultValue={values.poc}
+              placeholder="Enter Your Last Name"
+              label="Last Name"
+              onChange={handleChange('lastName')}
+              defaultValue={values.lastName}
               margin="normal"
               fullWidth
             />
@@ -50,10 +50,10 @@ export class FormUserDetails extends Component {
             />
             <br />
             <TextField
-              placeholder="Enter The Organization's Zip Code"
-              label="Zip Code"
-              onChange={handleChange('zip')}
-              defaultValue={values.zip}
+              placeholder="Enter A Secure Password"
+              label="Password"
+              onChange={handleChange('password')}
+              defaultValue={values.password}
               margin="normal"
               fullWidth
             />

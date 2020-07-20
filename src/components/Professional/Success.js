@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { NavLink } from "react-router-dom";
+
+
 
 export class Success extends Component {
   continue = e => {
     e.preventDefault();
-    // PROCESS FORM //
-    this.props.nextStep();
+    // let path = `/login`; 
+    // history.push(path);
   };
 
   back = e => {
@@ -27,6 +31,21 @@ export class Success extends Component {
             <AppBar title="Success" />
             <h1>Thank You For Your Submission</h1>
             <p>Please login to select a nonprofit organization.</p>
+            <br />
+            <NavLink
+          to="/login"
+          className="navbar-home"
+          activeStyle={{ background: "dark blue" ,fontWeight: "bold" }}
+          activeClassName="selected"
+          exact
+          >
+          Go to Login
+          </NavLink>
+            {/* <Button
+              color="primary"
+              variant="contained"
+              onClick={this.continue}
+            >Go To Login</Button> */}
           </Dialog>
         </>
       </MuiThemeProvider>

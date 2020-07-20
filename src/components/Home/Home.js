@@ -32,7 +32,7 @@ export default class Home extends Component {
             color="primary"
           /> */}
           <NavLink
-            to="/sign-up"
+            to="/professional-form"
             className="home-nav-btn"
             activeStyle={{ fontWeight: "bold" }}
             activeClassName="selected"

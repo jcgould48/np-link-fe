@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import { successToast, failureToast } from "../Toastify/Toast";
@@ -11,7 +12,7 @@ export class Confirm extends Component {
   continue = async (e) => {
     e.preventDefault();
     try{
-        await signup(this.props.values)
+        await this.props.signup(this.props.values)
         this.props.nextStep();
     }
     catch (e) {
@@ -26,7 +27,7 @@ export class Confirm extends Component {
 
   render() {
     const {
-      values: { firstName, lastName, email, occupation, city, bio }
+      values: { firstName, lastName, email, profession, zip, expertise }
     } = this.props;
     return (
       <MuiThemeProvider>
@@ -48,13 +49,13 @@ export class Confirm extends Component {
                 <ListItemText primary="Email" secondary={email} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Occupation" secondary={occupation} />
+                <ListItemText primary="Profession" secondary={profession} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="City" secondary={city} />
+                <ListItemText primary="Zip Code" secondary={zip} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Bio" secondary={bio} />
+                <ListItemText primary="Expertise" secondary={expertise} />
               </ListItem>
             </List>
             <br />
@@ -77,4 +78,11 @@ export class Confirm extends Component {
   }
 }
 
-export default Confirm;
+
+const mapStateToProps = (state) => {
+  return {
+    authUser: state.authUser,
+  };
+};
+
+export default connect(mapStateToProps, { signup })(Confirm);
