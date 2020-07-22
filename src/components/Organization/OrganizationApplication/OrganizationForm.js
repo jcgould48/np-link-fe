@@ -76,10 +76,10 @@ export class UserForm extends Component {
           noError: null,
         },
       },
-      zip: {
-        name: "zip",
-        type: "zip",
-        placeholder: "Enter Zip Code of Business",
+      city: {
+        name: "city",
+        type: "city",
+        placeholder: "Enter City of Business",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -292,8 +292,8 @@ export class UserForm extends Component {
 
   render() {
     const { step } = this.state;
-    const { orgName,poc, email, helpNeeded,pitch, description, zip, chipInput } = this.state;
-    const values = { orgName,poc, email, helpNeeded,pitch, description, zip, chipInput };
+    const { orgName,poc, email, helpNeeded,pitch, description, city, chipInput } = this.state;
+    const values = { orgName,poc, email, helpNeeded,pitch, description, city, chipInput };
 
     switch (step) {
       case 1:

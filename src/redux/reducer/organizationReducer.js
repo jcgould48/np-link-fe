@@ -22,34 +22,7 @@ import {
         return {
           organizations: [...action.payload],
         };
-      case MARK_INTERESTED:
-        let mapper = state.organizations.map(item => {
-            if (item._id === action.payload._id) {
-              return {
-                ...item,
-                availability:false,
-              }
-            }
-            return item
-          });
-        return {
-          ...state,
-          organizations: mapper
-          };
-        case MARK_NOT_INTERESTED:
-          let mapper2 = state.organizations.map(item => {
-              if (item._id === action.payload._id) {
-                return {
-                  ...item,
-                  availability:false,
-                }
-              }
-              return item
-            });
-          return {
-            ...state,
-            organizations: mapper2
-            };
+      
       case DELETE_ORGANIZATION:
         return {
           ...state,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
+import { createOrganization } from "../../../redux/actions/organizationAction";
 import { successToast, failureToast } from "../../Toastify/Toast";
 // import { signup } from "../../redux/actions/authUserAction";
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
@@ -11,7 +13,29 @@ export class Confirm extends Component {
   continue = async (e) => {
     e.preventDefault();
     try{
-        // await signup(this.props.values)
+
+      const {
+        orgName,
+        poc,
+        helpNeeded,
+        city,
+        email,
+        pitch,
+        description,
+        chipInput
+      } = this.props;
+
+      let orgObj = {
+        orgName: orgName.value,
+        poc: poc.value,
+        email: email.value,
+        city: city.value,
+        helpNeeded: helpNeeded.value,
+        pitch: pitch.value,
+        description: description.value,
+        hashTags: chipInput.valueArray
+      };
+        await this.props.createOrganization(orgObj)
         this.props.nextStep();
     }
     catch (e) {
@@ -26,7 +50,7 @@ export class Confirm extends Component {
 
   render() {
     const {
-      values: { orgName,poc, email, helpNeeded,pitch, description, zip, chipInput}
+      values: { orgName,poc, email, helpNeeded,pitch, description, city, chipInput}
     } = this.props;
     return (
       <MuiThemeProvider>
@@ -48,6 +72,9 @@ export class Confirm extends Component {
                 <ListItemText primary="Email" secondary={email} />
               </ListItem>
               <ListItem>
+                <ListItemText primary="City" secondary={city} />
+              </ListItem>
+              <ListItem>
                 <ListItemText primary="Pitch" secondary={pitch} />
               </ListItem>
               <ListItem>
@@ -57,7 +84,7 @@ export class Confirm extends Component {
                 <ListItemText primary="Help Needed" secondary={helpNeeded} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Hash Tags" secondary={chipInput} />
+                <ListItem primary="Hash Tags" secondary={chipInput} />
               </ListItem>
             </List>
             <br />
@@ -80,4 +107,11 @@ export class Confirm extends Component {
   }
 }
 
-export default Confirm;
+
+const mapStateToProps = (state) => {
+  return {
+    authUser: state.authUser,
+  };
+};
+
+export default connect(mapStateToProps, { createOrganization })(Confirm);

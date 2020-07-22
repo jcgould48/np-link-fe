@@ -32,15 +32,19 @@ export class Success extends Component {
             <h1>Thank You For Your Submission</h1>
             <p>Please login to select a nonprofit organization.</p>
             <br />
+            <Button 
+            color="primary"
+            variant="contained"
+            >
             <NavLink
           to="/login"
           className="navbar-home"
-          activeStyle={{ background: "dark blue" ,fontWeight: "bold" }}
+          // activeStyle={{ background: "dark blue" ,fontWeight: "bold" }}
           activeClassName="selected"
           exact
           >
           Go to Login
-          </NavLink>
+          </NavLink></Button>
             {/* <Button
               color="primary"
               variant="contained"

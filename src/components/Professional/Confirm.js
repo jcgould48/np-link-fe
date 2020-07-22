@@ -13,6 +13,7 @@ export class Confirm extends Component {
     e.preventDefault();
     try{
         await this.props.signup(this.props.values)
+        
         this.props.nextStep();
     }
     catch (e) {
@@ -27,7 +28,7 @@ export class Confirm extends Component {
 
   render() {
     const {
-      values: { firstName, lastName, email, profession, zip, expertise }
+      values: { firstName, lastName, email, profession, city, expertise }
     } = this.props;
     return (
       <MuiThemeProvider>
@@ -52,7 +53,7 @@ export class Confirm extends Component {
                 <ListItemText primary="Profession" secondary={profession} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Zip Code" secondary={zip} />
+                <ListItemText primary="City" secondary={city} />
               </ListItem>
               <ListItem>
                 <ListItemText primary="Expertise" secondary={expertise} />

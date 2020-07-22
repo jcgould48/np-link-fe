@@ -6,8 +6,9 @@ import "./Home.css"
 
 export default class Home extends Component {
   render() {
+    // const { classes } = props;
     return (
-    <>
+    <div className="home">
     <div>
       <h3>Welcome, ....
 
@@ -31,6 +32,11 @@ export default class Home extends Component {
             variant="contained"
             color="primary"
           /> */}
+          <Button variant="fab"
+          color="primary"
+          aria-label="add"
+          // className={classes.button}
+          >
           <NavLink
             to="/professional-form"
             className="home-nav-btn"
@@ -40,9 +46,9 @@ export default class Home extends Component {
           >
            Professionals
           </NavLink>
-
+          </Button>
           <NavLink
-            to="/auth-org"
+            to="/organization-form"
             className="home-nav-btn"
             activeStyle={{ fontWeight: "bold" }}
             activeClassName="selected"
@@ -51,7 +57,7 @@ export default class Home extends Component {
            Nonprofits
           </NavLink>
           </div>
-    </>
+    </div>
     )
   }
 }

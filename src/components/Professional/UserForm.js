@@ -76,10 +76,10 @@ export class UserForm extends Component {
         },
       },
  
-      zip: {
-        name: "zip",
+      city: {
+        name: "city",
         type: "number",
-        placeholder: "Zip code",
+        placeholder: "City",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -247,8 +247,8 @@ export class UserForm extends Component {
 
   render() {
     const { step } = this.state;
-    const { firstName, lastName, email, password, profession, zip, expertise } = this.state;
-    const values = { firstName, lastName, email, password, profession, zip, expertise };
+    const { firstName, lastName, email, password, profession, city, expertise } = this.state;
+    const values = { firstName, lastName, email, password, profession, city, expertise };
 
     switch (step) {
       case 1:

@@ -50,10 +50,10 @@ export class FormUserDetails extends Component {
             />
             <br />
             <TextField
-              placeholder="Enter The Organization's Zip Code"
-              label="Zip Code"
-              onChange={handleChange('zip')}
-              defaultValue={values.zip}
+              placeholder="Enter The Organization's City"
+              label="City"
+              onChange={handleChange('city')}
+              defaultValue={values.city}
               margin="normal"
               fullWidth
             />

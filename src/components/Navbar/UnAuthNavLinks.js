@@ -4,7 +4,7 @@ import "./Navbar.css";
 export default function UnAuthNavLinks() {
   return (
     <ul className="nav__ul">
-      <li>
+      {/* <li>
         <NavLink
           to="/sign-up"
           className="navbar"
@@ -13,7 +13,7 @@ export default function UnAuthNavLinks() {
         >
           Sign up
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink
           to="/login"

@@ -1,3 +1,10 @@
+/* body{
+  background: url("background.jpeg") no-repeat center center fixed;
+  -webkit-background: cover;
+  -moz-background: cover;
+  -webkit-background: cover; 
+  background-color: #cccccc;
+} */
 p {
     margin-bottom: 5px;
   }

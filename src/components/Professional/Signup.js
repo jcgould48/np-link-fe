@@ -66,10 +66,10 @@ class Signup extends Component {
         },
       },
  
-      zip: {
-        name: "zip",
+      city: {
+        name: "city",
         type: "number",
-        placeholder: "Zip code",
+        placeholder: "City",
         handleOnChange: {
           inputOnChange: this.handleOnChange,
         },
@@ -224,7 +224,7 @@ class Signup extends Component {
   onSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password, username, expertise, profession, zip} = this.state.formConfig;
+    const { email, password, username, expertise, profession, city} = this.state.formConfig;
 
     try {
       let inputForm = {
@@ -237,7 +237,7 @@ class Signup extends Component {
         username: username.value,
         expertise: expertise.value,
         profession: profession.value,
-        zip: zip.value,
+        city: city.value,
       });
 
       successToast("Welcome, please login");
@@ -247,7 +247,7 @@ class Signup extends Component {
       inputForm["username"].value = "";
       inputForm["expertise"].value = "";
       inputForm["profession"].value = "";
-      inputForm["zip"].value = "";
+      inputForm["city"].value = "";
 
       this.setState({
         ...this.state,

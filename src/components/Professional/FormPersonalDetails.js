@@ -37,10 +37,10 @@ export class FormPersonalDetails extends Component {
             />
             <br />
             <TextField
-              placeholder="Enter Your Zip Code"
-              label="Zip Code"
-              onChange={handleChange('zip')}
-              defaultValue={values.zip}
+              placeholder="Enter Your City"
+              label="City"
+              onChange={handleChange('city')}
+              defaultValue={values.city}
               margin="normal"
               fullWidth
             />

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAllOrganizations, interestedOrg, notInterestedOrg} from "../../../redux/actions/organizationAction";
+import { getAllOrganizations,getRelevantOrganizations, interestedOrg, notInterestedOrg} from "../../../redux/actions/organizationAction";
 import { successToast, failureToast } from "../../Toastify/Toast";
 import ButtonGroup from "../../shared/ButtonGroup";
 
@@ -26,6 +26,19 @@ class OrganizationSelector extends Component {
       // console.log("####$$$", item)
       await this.props.interestedOrg(item);
       successToast("Item Rented")
+    } catch (e) {
+        failureToast(e);
+      };
+    }
+  handleTest = async (item) => {
+    try{
+      
+      // this.setState({
+      //   availability: false
+      // })
+      console.log("####$$$", item)
+      await this.props.getRelevantOrganizations(item);
+      // successToast("Item Rented")
     } catch (e) {
         failureToast(e);
       };
@@ -84,6 +97,12 @@ class OrganizationSelector extends Component {
                 title="Not Interested"
                 onClick={() => this.handleNotInterested(orgCard)}
               />
+              <ButtonGroup
+                buttonStyle="form-button-wait"
+                className="btn btn-primary"
+                title="TEST"
+                onClick={() => this.handleTest(orgCard)}
+              />
                 
             </div>
             </div>
@@ -99,6 +118,6 @@ const mapStateToProps = (state) => ({
     organization: state.organization,
     authUser: state.authUser,
   });
-  export default connect(mapStateToProps, { getAllOrganizations, notInterestedOrg, interestedOrg })(
+  export default connect(mapStateToProps, { getAllOrganizations,getRelevantOrganizations, notInterestedOrg, interestedOrg })(
     OrganizationSelector
   );
