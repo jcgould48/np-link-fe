@@ -236,7 +236,38 @@ export class UserForm extends Component {
         return errorState;
     }
   };
+  handleAddChip = (chip) => {
+   console.log("CHIP HEEERE")
+    let inputForm = {
+      ...this.state.formSetting,
+    };
 
+    let newArray = [...inputForm["chipInput"].valueArray, chip];
+    console.log("CHIP HEEERE2", newArray)
+    inputForm["chipInput"].valueArray = newArray;
+
+    this.setState({
+      ...this.state,
+      formSetting: inputForm,
+    });
+  };
+
+  handleDeleteChip = (deletingChip, index) => {
+    let inputForm = {
+      ...this.state.formSetting,
+    };
+
+    let newArray = inputForm["chipInput"].valueArray.filter(
+      (chip) => chip !== deletingChip
+    );
+
+    inputForm["chipInput"].valueArray = newArray;
+
+    this.setState({
+      ...this.state,
+      formSetting: inputForm,
+    });
+  };
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
@@ -294,7 +325,8 @@ export class UserForm extends Component {
     const { step } = this.state;
     const { orgName,poc, email, helpNeeded,pitch, description, city, chipInput } = this.state;
     const values = { orgName,poc, email, helpNeeded,pitch, description, city, chipInput };
-    const valueArray=[]
+    const {valueArray}=this.state.formSetting.chipInput
+    const newValueArray = {valueArray}
     switch (step) {
       case 1:
         return (
@@ -302,6 +334,7 @@ export class UserForm extends Component {
             nextStep={this.nextStep}
             handleChange={this.handleChange}
             values={values}
+            newValueArray={newValueArray}
           />
         );
       case 2:
@@ -311,6 +344,7 @@ export class UserForm extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             values={values}
+            newValueArray={newValueArray}
           />
         );
       case 3:
@@ -319,8 +353,10 @@ export class UserForm extends Component {
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             handleChange={this.handleChange}
+            handleAddChip={this.handleAddChip}
+            handleDeleteChip={this.handleDeleteChip}
             values={values}
-            valueArray={valueArray}
+            newValueArray={newValueArray}
           />
         );
       case 4:
@@ -329,6 +365,7 @@ export class UserForm extends Component {
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             values={values}
+            newValueArray={newValueArray}
           />
         );
       case 5:

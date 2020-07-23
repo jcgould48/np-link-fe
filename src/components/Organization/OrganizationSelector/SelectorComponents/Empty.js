@@ -13,7 +13,7 @@ const Empty = ({likedOrgs}) => (
     <div id="liked-organization">
       <p>
         {likedOrgs.length > 0
-          ? "Organizations you are interested in!"
+          ? "We will connect you via email to the following organizations!"
           : ''}
       </p>
 

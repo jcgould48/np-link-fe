@@ -35,6 +35,7 @@ export class Confirm extends Component {
         description: description,
         hashTags: chipInput
       };
+      console.log("values2", this.props)
       console.log("values", orgObj)
       // await this.props.createOrganization(this.props.values)
       // this.props.nextStep();

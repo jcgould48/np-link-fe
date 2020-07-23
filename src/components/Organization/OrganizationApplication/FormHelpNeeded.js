@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
-import ChipInputGroup from '../../shared/ChipInputGroup'
+// import ChipInputGroup from '../../shared/ChipInputGroup'
 import classnames from "classnames";
 import ChipInput from "material-ui-chip-input";
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
@@ -138,40 +138,40 @@ export class FormPersonalDetails extends Component {
     this.props.prevStep();
   };
   
-  handleAddChip = (chip) => {
-        let inputForm = {
-          ...this.state.formSetting,
-        };
+  // handleAddChip = (chip) => {
+  //       let inputForm = {
+  //         ...this.state.formSetting,
+  //       };
     
-        let newArray = [...inputForm["chipInput"].valueArray, chip];
+  //       let newArray = [...inputForm["chipInput"].valueArray, chip];
     
-        inputForm["chipInput"].valueArray = newArray;
+  //       inputForm["chipInput"].valueArray = newArray;
     
-        this.setState({
-          ...this.state,
-          formSetting: inputForm,
-        });
-      };
+  //       this.setState({
+  //         ...this.state,
+  //         formSetting: inputForm,
+  //       });
+  //     };
     
-      handleDeleteChip = (deletingChip, index) => {
-        let inputForm = {
-          ...this.state.formSetting,
-        };
+  //     handleDeleteChip = (deletingChip, index) => {
+  //       let inputForm = {
+  //         ...this.state.formSetting,
+  //       };
     
-        let newArray = inputForm["chipInput"].valueArray.filter(
-          (chip) => chip !== deletingChip
-        );
+  //       let newArray = inputForm["chipInput"].valueArray.filter(
+  //         (chip) => chip !== deletingChip
+  //       );
     
-        inputForm["chipInput"].valueArray = newArray;
+  //       inputForm["chipInput"].valueArray = newArray;
     
-        this.setState({
-          ...this.state,
-          formSetting: inputForm,
-        });
-      };
+  //       this.setState({
+  //         ...this.state,
+  //         formSetting: inputForm,
+  //       });
+  //     };
 
   render() {
-    const { values,valueArray, handleChange } = this.props;
+    const { values,newValueArray, handleChange, handleAddChip, handleDeleteChip } = this.props;
     return (
       <MuiThemeProvider>
         <>
@@ -193,8 +193,9 @@ export class FormPersonalDetails extends Component {
             <ChipInput
         className="chipInput"
         placeholder="Interest Tags"
-        value={valueArray.chipInput}
-        onAdd={(chip) => this.handleAddChip(chip)}
+        // value={valueArray.chipInput}
+        newValueArray={newValueArray}
+        onAdd={handleAddChip}
         onDelete={(chip, index) =>
           this.handleDeleteChip(chip, index)
         }

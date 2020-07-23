@@ -29,15 +29,15 @@ header {
 	display: flex;
 }
 
-header {
+/*header {
 	background-color: white;
 	overflow: hidden;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 10px 5px;
 	box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
 }
+*/
 
 header button {
 	background-color: transparent;

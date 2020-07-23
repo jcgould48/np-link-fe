@@ -17,8 +17,8 @@ import {
 import {
   ArrowBack, 
   Home, 
-  Apps, 
-  ContactMail, 
+  Apps,  
+  SupervisedUserCircle,
   AssignmentInd,
   ExitToApp
 } from '@material-ui/icons'
@@ -60,7 +60,7 @@ const menuItems=[
     listPath: "/login",
   },
   {
-    listIcon:<ContactMail/>,
+    listIcon:<SupervisedUserCircle/>,
     listText:"Nonprofit Selector",
     listPath: "/organization-selector",
   },
