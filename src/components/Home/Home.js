@@ -1,63 +1,77 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import ButtonGroup from "../shared/ButtonGroup"
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+Toolbar, 
+ListItem,
+List, 
+IconButton,ListItemText, 
+Typography, 
+Box, 
+Avatar, 
+Divider, 
+ListItemIcon
+} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 import "./Home.css"
+import { makeStyles } from '@material-ui/core/styles';
 
-export default class Home extends Component {
-  render() {
-    // const { classes } = props;
+
+const useStyles = makeStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+});
+
+
+const Home=()=>{
+  const classes = useStyles();
+    
     return (
+      <>
+      <Box>
     <div className="home">
-    <div>
-      <h3>Welcome, ....
-
-        If you are a professional looking to volunteer please follow the Professional button.
-        If you are a Nonprofit organization looking for volunteers please follow the Nonprofit button.
-
-      </h3>
+      <br/>
+      <br/>
+    <div className="home-text-top">
+      <Typography variant="h3" align= "center">
+      Welcome to Charity---Link
+      </Typography>
     </div>
+      <br/>
+      <br/>
+      <br/>
+    <div className="home-text-body">
+    <Typography variant="h5" align= "center" style={{color:"tan"}}>
+    Where professionals can volunteer
+      </Typography>
+      <br/>
+      <Typography variant="h4" align= "center" style={{color:"tomato", textShadow: "2px 2px #331111"}}>
+       - AND -
+      </Typography>
+      <br/>
+    <Typography variant="h5" align= "center" style={{color:"tan"}}>
+    Nonprofits can find qualified help
+      </Typography>
+      </div>
+    <br/>
+      <br/>
     <div className="homeButtons">
-     {/* <ButtonGroup
-            buttonStyle="form-button"
-            title="Professionals"
-            variant="contained"
-            color="primary"
-            component={Link}
-            
-          />
-      <ButtonGroup
-            buttonStyle="form-button"
-            title="Nonprofits"
-            variant="contained"
-            color="primary"
-          /> */}
-          <Button variant="fab"
-          color="primary"
-          aria-label="add"
-          // className={classes.button}
-          >
-          <NavLink
-            to="/professional-form"
-            className="home-nav-btn"
-            activeStyle={{ fontWeight: "bold" }}
-            activeClassName="selected"
-            exact
-          >
-           Professionals
-          </NavLink>
-          </Button>
-          <NavLink
-            to="/organization-form"
-            className="home-nav-btn"
-            activeStyle={{ fontWeight: "bold" }}
-            activeClassName="selected"
-            exact
-          >
-           Nonprofits
-          </NavLink>
-          </div>
+      <Button className={classes.root} component={Link} to={"/professional-form"}>Professional Form</Button>
+      <Button className={classes.root} component={Link} to={"/organization-form"}>Nonprofit Form</Button>
+      </div>
     </div>
+    </Box>
+    </>
     )
-  }
+  
 }
+
+
+export default Home

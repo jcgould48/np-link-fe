@@ -12,9 +12,11 @@ const OrganizationCard = ({ organization }) => {
         </div>
 
         <div className="organization-description">
-          <p className="organization-name">
+          <p className="organization-name" style={{color:"#222323"}}>
             {orgName}
           </p>
+          <hr/>
+          <br/>
           <p className="organization-poc">Point of Contact: {poc}</p>
           <br />
           <p className="organization-pitch">"{pitch}"</p>

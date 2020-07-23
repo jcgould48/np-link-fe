@@ -4,9 +4,10 @@ import ChipInput from "material-ui-chip-input";
 import Modal from "react-modal";
 
 import ButtonGroup from "../shared/ButtonGroup";
+import Button from '@material-ui/core/Button';
 import { deleteOrganization,  approveOrganization } from "../../redux/actions/organizationAction";
 import { successToast, failureToast } from "../Toastify/Toast"
-// import "react-datepicker/dist/react-datepicker.css";
+import "./Modal.css"
 
 Modal.setAppElement("#root");
 const customStyles = {
@@ -121,15 +122,15 @@ class OrganizationModal extends Component {
                 />
               </td>
               <td>
-                      <ButtonGroup
-                        title="Approve"
-                        style={{ backgroundColor: "blue" }}
-                        buttonStyle="form-button edit-button"
-                        disabled={false}
+                      <Button
+                         color="primary"
+                         variant="contained"
                         onClick={this.handleApprove}
-                      />
+                      >
+                        Approve
+                      </Button>
                     </td>
-              <td>
+              {/* <td>
                       <ButtonGroup
                         title="Edit"
                         style={{ backgroundColor: "blue" }}
@@ -137,14 +138,16 @@ class OrganizationModal extends Component {
                         disabled={false}
                         onClick={this.handelEdit}
                       />
-                    </td>
+                    </td> */}
                     <td>
-                      <ButtonGroup
-                        title="Delete"
-                        buttonStyle="form-button form-button-delete edit-button"
-                        disabled={false}
+                      <Button
+                         color="secondary"
+                         variant="contained"
                         onClick={this.handleDelete}
-                      />
+                      >
+                        Delete
+                      </Button>
+
                     </td>
             </tr>
           </tbody>

@@ -62,7 +62,7 @@ import {
   };
   export const deleteOrganization = (id) => async (dispatch) => {
     try {
-      console.log("Check?", id)
+      // console.log("Check?", id)
       let success = await Axios.delete(`/api/organizations/delete-org/${id}`);
   
       dispatch({

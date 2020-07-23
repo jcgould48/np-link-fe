@@ -21,10 +21,10 @@ import {
 
   export const likedOrganization = (orgInfo) => async (dispatch) => {
     try {
-        console.log("liked org", orgInfo)
+        // console.log("liked org", orgInfo)
       let success = await Axios.put("/api/organizations/like-organization", orgInfo);
   
-      console.log("dispatch", success.data)
+      // console.log("dispatch", success.data)
       dispatch({
         type: LIKED_ORGANIZATION,
         payload: success.data,
@@ -35,7 +35,7 @@ import {
   };
   export const dislikedOrganization = (orgInfo) => async (dispatch) => {
     try {
-        console.log("disliked org", orgInfo)
+        // console.log("disliked org", orgInfo)
       let success = await Axios.put("/api/organizations/dislike-organization", orgInfo);
   
       dispatch({

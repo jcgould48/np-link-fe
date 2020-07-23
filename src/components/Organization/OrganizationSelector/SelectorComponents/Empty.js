@@ -1,32 +1,28 @@
-// import React from 'react';
-// import LikedOrganization from './LikedOrganization';
+import React from 'react';
+import LikedOrganization from './LikedOrganization';
 
-// const Empty = ({ activeUserImage, likedOrganization}) => (
-//   <div id="lonely">
-//     <p>There's no new around you.</p>
+const Empty = ({likedOrgs}) => (
+  
+  <div id="empty">
+    <p>There are no more nonprofits at this time.</p>
 
-//     <span className="pulse">
-//       <img src={`/images/users/${activeUserImage}`} alt="You..." />
-//     </span>
+    <span className="pulse">
+      <img src='/images/misc/main-logo.png' alt="Charity Link" />
+    </span>
 
-//     <div id="liked-people">
-//       <p>
-//         {likedOrganization.length > 0
-//           ? "People you liked...let's hope they like you too!"
-//           : ''}
-//       </p>
+    <div id="liked-organization">
+      <p>
+        {likedOrgs.length > 0
+          ? "Organizations you are interested in!"
+          : ''}
+      </p>
 
-//       {likedOrganization.map(item => (
-//         <LikedOrganization key={item.id} organization={item} />
-//       ))}
+      {likedOrgs.map(item => (
+        <LikedOrganization key={item.id} likedOrgs={item} />
+      ))}
 
-//       {/* <p>{superlikedOrgs.length > 0 ? 'People you super liked!' : ''}</p> */}
+    </div>
+  </div>
+);
 
-//       {/* {superlikedOrgs.map(item => (
-//         <LikedPerson key={item.id} person={item} />
-//       ))} */}
-//     </div>
-//   </div>
-// );
-
-// export default Empty;
+export default Empty;

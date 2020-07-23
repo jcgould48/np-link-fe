@@ -7,6 +7,7 @@ import Empty from './SelectorComponents/Empty';
 import {getRelevantOrganizations, likedOrganization} from "../../../redux/actions/selectorActions"
 import './OrganizationSelector.css';
 
+
 export class OrganizationSelector extends Component {
   state = {
     // people: [],
@@ -28,22 +29,12 @@ export class OrganizationSelector extends Component {
     }
   }
 
-  // removedPersonFromDataSrc = (peopleSource, userId) =>
-  //   peopleSource.filter(user => user.id !== userId);
-    
-    // handleLiked= async(item)=>{
-    //   try{
-    //     console.log("handle like", item)
-    //       await this.props.likedOrganization(item)
-    //   } catch(e){
-    //     console.log(e)
-    //   }
-    // }
 
   render(){
     const {relevantOrgs, likedOrgs}= this.props.selector
   return (
     <div className="app">
+      <br/>
       <Header />
       
       {relevantOrgs[1] ? (
@@ -54,12 +45,11 @@ export class OrganizationSelector extends Component {
           // likedOrgs={likedOrgs}
         />
       ) : (
-        <div>DONE</div>
-        // <Empty
-        //   // activeUserImage={people[activeUser].image}
-        //   // activeUserImage={this.props.organization.organizations[0].image}
-        //   likedOrgs={likedOrgs}
-        // />
+        // <div>DONE</div>
+        <Empty
+          // activeUserImage={relevantOrgs[0].image}
+          likedOrgs={likedOrgs}
+        />
       )}
     </div>
   );

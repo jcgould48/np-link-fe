@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LikedOrganization = ({ organization }) => (
+const LikedOrganization = ({ likedOrgs }) => (
   <div className="liked-organization">
-    <div className="liked-organization-image">
+    <div key= {likedOrgs[0].id} className="liked-organization-image">
       <img
-        src={`/images/users/${organization.image}`}
-        alt={`You liked ${organization.name}`}
+        src={`/images/orgLogos/${likedOrgs[0].image}`}
+        alt={`You liked ${likedOrgs[0].name}`}
       />
     </div>
   </div>

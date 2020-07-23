@@ -1,10 +1,25 @@
 body{
-    background: url("/images/misc/background.jpeg") no-repeat center center fixed;
+    /* background: url("/images/misc/background.jpeg") no-repeat center center fixed;
     background-size: auto;
     -webkit-background: cover;
     -moz-background: cover;
-    -webkit-background: cover; 
-    background-color: #cccccc;
+    -webkit-background: cover;  */
+    background-color: #233;
+  }
+
+  .home-text-top{
+    text-align: center;
+    color: tomato;
+    padding: "3rem 0";
+    text-transform: uppercase;
+    text-shadow: 2px 2px #331111
+  }
+  
+
+  .home-text-body{
+   
+    padding: "3rem 0";
+    text-transform: uppercase;
   }
 
 .homeButtons{

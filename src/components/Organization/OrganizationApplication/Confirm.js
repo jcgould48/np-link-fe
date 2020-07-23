@@ -13,7 +13,7 @@ export class Confirm extends Component {
   continue = async (e) => {
     e.preventDefault();
     try{
-
+      
       const {
         orgName,
         poc,
@@ -23,18 +23,21 @@ export class Confirm extends Component {
         pitch,
         description,
         chipInput
-      } = this.props;
-
+      } = this.props.values;
+      
       let orgObj = {
-        orgName: orgName.value,
-        poc: poc.value,
-        email: email.value,
-        city: city.value,
-        helpNeeded: helpNeeded.value,
-        pitch: pitch.value,
-        description: description.value,
-        hashTags: chipInput.valueArray
+        orgName: orgName,
+        poc: poc,
+        email: email,
+        city: city,
+        helpNeeded: helpNeeded,
+        pitch: pitch,
+        description: description,
+        hashTags: chipInput
       };
+      console.log("values", orgObj)
+      // await this.props.createOrganization(this.props.values)
+      // this.props.nextStep();
         await this.props.createOrganization(orgObj)
         this.props.nextStep();
     }

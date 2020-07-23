@@ -5,8 +5,10 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+  color:tomato;
   line-height: 1;
-  background-color: #f7f7f7;
+  background-color: #233;
+  /* background-color: #f7f7f7; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -148,29 +150,29 @@ header .fl:last-child {
 	padding: 15px;
 }
 
-#lonely {
+#Empty {
 	padding: 10px;
 	border-radius: 1px;
 	background-color: white;
 	border-top: 1px solid #eee;
 }
 
-#liked-people {
+#liked-organization {
 	margin: auto;
 	overflow: hidden;
 }
 
-#liked-people .liked-organization {
+#liked-organization .liked-organization {
 	display: inline-block;
 	width: 33%;
 	margin-top: 10px;
 }
 
-#liked-people .liked-organization-image {
+#liked-organization .liked-organization-image {
 	border-radius: 5px;
 }
 
-#liked-people .liked-organization-image img {
+#liked-organization .liked-organization-image img {
 	width: 140px;
 	height: 100px;
 	object-fit: cover;

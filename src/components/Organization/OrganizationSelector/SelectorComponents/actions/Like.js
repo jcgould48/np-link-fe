@@ -7,7 +7,7 @@ export class Like extends Component {
 
   handleLiked= async(item)=>{
     try{
-      console.log("handle like", item.id)
+      // console.log("handle like", this.props.selector.likedOrgs)
         await this.props.likedOrganization(item)
     } catch(e){
       console.log(e)

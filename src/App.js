@@ -7,6 +7,8 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
+import "./App.css"
+
 
 checkTokenAuth(store);
 class App extends Component {

@@ -21,21 +21,22 @@ import {
     switch (action.type) {
     case GET_RELEVANT_ORGANIZATIONS:
         return {
+          ...state,
             relevantOrgs: [...action.payload],
         };
         case LIKED_ORGANIZATION:
         return {
           ...state,
-          likedOrgs: [state.likedOrgs, ...action.payload],
+          likedOrgs: [...state.likedOrgs, action.payload],
           relevantOrgs: state.relevantOrgs.filter(
-               (item)=> item.id !== action.payload[0].id, console.log('reduce here',state.relevantOrgs)), 
+               (item)=> item.id !== action.payload[0].id, console.log('reduce here',state.likedOrgs)), 
         };
         case DISLIKED_ORGANIZATION:
           return {
             ...state,
             dislikedOrgs: [state.likedOrgs, ...action.payload],
             relevantOrgs: state.relevantOrgs.filter(
-                 (item)=> item.id !== action.payload[0].id, console.log('reduce here2',state.relevantOrgs)),
+                 (item)=> item.id !== action.payload[0].id),
             };
           default:
             return state;

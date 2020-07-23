@@ -1,11 +1,7 @@
-/* body{
-  background: url("background.jpeg") no-repeat center center fixed;
-  -webkit-background: cover;
-  -moz-background: cover;
-  -webkit-background: cover; 
-  background-color: #cccccc;
-} */
-p {
+body{
+  background-color: #233;
+}
+/* p {
     margin-bottom: 5px;
   }
     label {
@@ -80,4 +76,4 @@ p {
     }
     .Back:hover{
       background-color: #9e631b;
-    }
+    } */

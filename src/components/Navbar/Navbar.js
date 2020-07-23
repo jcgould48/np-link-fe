@@ -1,8 +1,27 @@
 import React, { Component, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {AppBar,Toolbar, ListItem,List, IconButton,ListItemText, Typography, Box, Tabs, Tab, Avatar, Divider, ListItemIcon} from '@material-ui/core'
-import {ArrowBack, Home, Apps, ContactMail, AssignmentInd} from '@material-ui/icons'
+import {
+  AppBar,
+  Toolbar, 
+  ListItem,
+  List, 
+  IconButton,
+  ListItemText, 
+  Typography, 
+  Box, 
+  Avatar, 
+  Divider, 
+  ListItemIcon
+} from '@material-ui/core'
+import {
+  ArrowBack, 
+  Home, 
+  Apps, 
+  ContactMail, 
+  AssignmentInd,
+  ExitToApp
+} from '@material-ui/icons'
 import {makeStyles} from '@material-ui/core/styles'
 import MobileRightMenuSlider from "@material-ui/core/Drawer"
 import AuthNavLinks from "./AuthNavLinks";
@@ -18,9 +37,9 @@ const useStyles = makeStyles(theme=>({
     background: "#511",
     height:"100%",
   },
-  logo:{
+  avatar:{
     display:"block",
-    margin:"0.5 rem auto",
+    margin:"0.5rem auto",
     width: theme.spacing(13),
     height:theme.spacing(13)
   },
@@ -32,23 +51,23 @@ const useStyles = makeStyles(theme=>({
 const menuItems=[
   {
     listIcon:<Home/>,
-    listText:"HOME"
+    listText:"Home",
+    listPath: "/",
   },
   {
     listIcon:<AssignmentInd/>,
-    listText:"AssignmentInd"
-  },
-  {
-    listIcon:<Apps/>,
-    listText:"Portfolio"
+    listText:"Login",
+    listPath: "/login",
   },
   {
     listIcon:<ContactMail/>,
-    listText:"Contacts"
+    listText:"Nonprofit Selector",
+    listPath: "/organization-selector",
   },
   {
-    listIcon:<Home/>,
-    listText:"Home"
+    listIcon:<Apps/>,
+    listText:"Admin",
+    listPath: "/auth-org",
   },
 ]
 
@@ -71,18 +90,29 @@ const Navbar=()=>{
       component="div"
       onClick={toggleSlider(slider, false )}
       >
-        <Avatar className={classes.logo} src="/images/misc/user.png" alt="logo" />
+        <Avatar className={classes.avatar} src="/images/misc/main-logo.png" alt="logo" />
         <Divider/>
         <List>
           {menuItems.map((lsItem, key)=>(
 
-            <ListItem button key={key}>
+            <ListItem button key={key} component={Link} to={lsItem.listPath}>
             <ListItemIcon className={classes.listItem}>
               {lsItem.listIcon }
             </ ListItemIcon>
             <ListItemText className={classes.listItem}  primary={lsItem.listText}/> 
           </ListItem>
             ))}
+            <ListItem 
+            button key='3j3j3j' 
+            component={Link} 
+            to={'/login'} 
+            // onClick={}
+            >
+            <ListItemIcon className={classes.listItem}>
+              <ExitToApp/>
+            </ ListItemIcon>
+            <ListItemText className={classes.listItem}  primary="Logout"/> 
+          </ListItem>
         </List>
         </Box>
     )
@@ -96,10 +126,10 @@ const Navbar=()=>{
       <ArrowBack style={{color:"tomato"}}/>
       </IconButton>
       <Typography variant="h5" style={{color:"tan"}}>
-      Charity-Link
+      Charity---Link
       </Typography>
       <MobileRightMenuSlider 
-      anchor="right"
+      anchor="left"
       open={state.right}
       onClose={toggleSlider("right", false  )}
       >

@@ -294,7 +294,7 @@ export class UserForm extends Component {
     const { step } = this.state;
     const { orgName,poc, email, helpNeeded,pitch, description, city, chipInput } = this.state;
     const values = { orgName,poc, email, helpNeeded,pitch, description, city, chipInput };
-
+    const valueArray=[]
     switch (step) {
       case 1:
         return (
@@ -320,6 +320,7 @@ export class UserForm extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             values={values}
+            valueArray={valueArray}
           />
         );
       case 4:

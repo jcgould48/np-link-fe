@@ -9,9 +9,7 @@ const Home = React.lazy(() => import("./components/Home/Home"));
 const Navbar = React.lazy(() => import("./components/Navbar/Navbar"));
 const Login = React.lazy(() => import("./components/Login/Login"));
 const ProfessionalForm = React.lazy(() => import("./components/Professional/UserForm"));
-const OrgApplication = React.lazy(() => import("./components/Organization/temp/OrgApplication"));
 const OrganizationForm = React.lazy(() => import("./components/Organization/OrganizationApplication/OrganizationForm"));
-// const OrgApplication = React.lazy(() => import("./components/Organization/OrgApplication"));
 const OrganizationSelector = React.lazy(() => import("./components/Organization/OrganizationSelector/OrganizationsSelector"));
 const AuthOrganization = React.lazy(() => import("./components/Admin/AuthOrganization"));
 const NotFound = React.lazy(() => import("./components/NotFound/NotFound"));
@@ -29,7 +27,6 @@ export default class MainRouter extends Component {
           <Route exact path="/auth-org" component={AuthOrganization} />
           <Route exact path="/organization-selector" component={OrganizationSelector} />
           <Route exact path="/organization-form" component={OrganizationForm} />
-          <Route exact path="/org-application" component={OrgApplication} />
           <Route exact component={NotFound} />
         </Switch>
       </>

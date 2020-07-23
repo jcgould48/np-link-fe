@@ -171,7 +171,7 @@ export class FormPersonalDetails extends Component {
       };
 
   render() {
-    const { values, handleChange } = this.props;
+    const { values,valueArray, handleChange } = this.props;
     return (
       <MuiThemeProvider>
         <>
@@ -180,20 +180,20 @@ export class FormPersonalDetails extends Component {
             fullWidth
             maxWidth='sm'
           >
-            <AppBar title="Enter Type Of Professional Help Needed" />
-            <TextField
-              placeholder="Enter Type Of Professional Help Needed"
-              label="Help Needed"
-              onChange={handleChange('helpNeeded')}
-              defaultValue={values.helpNeeded}
-              margin="normal"
-              fullWidth
-            />
+          <AppBar title="Enter Type Of Professional Help Needed" />
+          <TextField
+            placeholder="Enter Type Of Professional Help Needed"
+            label="Help Needed"
+            onChange={handleChange('helpNeeded')}
+            defaultValue={values.helpNeeded}
+            margin="normal"
+            fullWidth
+          />
             <br />
             <ChipInput
         className="chipInput"
         placeholder="Interest Tags"
-        value={values.chipInput}
+        value={valueArray.chipInput}
         onAdd={(chip) => this.handleAddChip(chip)}
         onDelete={(chip, index) =>
           this.handleDeleteChip(chip, index)

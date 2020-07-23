@@ -6,6 +6,7 @@ import InputGroup from "../shared/InputGroup";
 import ButtonGroup from "../shared/ButtonGroup";
 import { successToast, failureToast } from "../Toastify/Toast";
 import { checkIfTokenTrueOrFalse } from "../PrivateRoute/checkIfTokenTrueOrFalse";
+import Button from '@material-ui/core/Button';
 
 import "./Login.css";
 

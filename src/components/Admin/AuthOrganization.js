@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 // import DatePicker from "react-datepicker";
 import ChipInput from "material-ui-chip-input";
 // import { parseISO } from "date-fns";
-import ButtonGroup from "../shared/ButtonGroup";
-
+// import ButtonGroup from "../shared/ButtonGroup";
+import Button from '@material-ui/core/Button';
 import { getAllOrganizations } from "../../redux/actions/organizationAction";
 import OrganizationModal from "./OrganizationModal"
-
+import "./AuthOrg.css"
 export class EditOrganizations extends Component {
   state = {
     isOpen: false,
@@ -54,44 +54,39 @@ export class EditOrganizations extends Component {
           <table>
             <tbody>
               <tr>
-                <th>Organization Name</th>
+                <th>Organization</th>
                 <th>Email</th>
                 <th>Help Needed</th>
-                <th>Pitch</th>
-                <th>Key Word Tags</th>
-                <th>Edit</th>
-                <th>Approve</th>
-                <th>Delete</th>
               </tr>
               {this.props.organization.organizations.map((item) => {
                 const {
                   orgName,
-                  pitch,
+                  email,
                   helpNeeded,
                   _id,
                 } = item;
                 return (
                   <tr key={_id}>
-                    <td>{orgName}</td>
-                    <td>{pitch}</td>
-                    <td>{helpNeeded}</td>
+                    <td >{orgName}</td>
+                    <td>{email}</td>
+                    <td >{helpNeeded}</td>
                     <td>
-                      <ButtonGroup
-                        title="Edit"
-                        style={{ backgroundColor: "blue" }}
-                        buttonStyle="form-button edit-button"
-                        disabled={false}
+                      <Button
+                         color="primary"
+                         variant="contained"
                         onClick={() => this.onModalOpen(item)}
-                      />
+                      >
+                        Edit
+                      </Button>
                     </td>
-                    <td>
+                    {/* <td>
                       <ButtonGroup
                         title="Delete"
                         buttonStyle="form-button form-button-delete edit-button"
                         disabled={false}
                         onClick={() => this.handleDelete(item)}
                       />
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}
