@@ -12,7 +12,7 @@ import {
   export const createOrganization = (orgInfo) => async (dispatch) => {
     try {
       console.log("step2", orgInfo)
-      let success = await Axios.post("/api/organizations/create-org", orgInfo);
+      let success = await Axios.post("/organizations/create-org", orgInfo);
   
       dispatch({
         type: CREATE_ORGANIZATION,
@@ -25,7 +25,7 @@ import {
   export const getAllOrganizations = (orgInfo) => async (dispatch) => {
     try {
       console.log("step2")
-      let success = await Axios.get("/api/organizations/get-all-orgs", orgInfo);
+      let success = await Axios.get("/organizations/get-all-orgs", orgInfo);
   
       dispatch({
         type: GET_ALL_ORGANIZATIONS,
@@ -38,7 +38,7 @@ import {
 
   export const interestedOrg = (orgInfo) => async (dispatch) => {
     try {
-      let success = await Axios.post("/api/organizations/create-org", orgInfo);
+      let success = await Axios.post("/organizations/create-org", orgInfo);
   
       dispatch({
         type: MARK_INTERESTED,
@@ -50,7 +50,7 @@ import {
   };
   export const notInterestedOrg = (orgInfo) => async (dispatch) => {
     try {
-      let success = await Axios.post("/api/organizations/create-org", orgInfo);
+      let success = await Axios.post("/organizations/create-org", orgInfo);
   
       dispatch({
         type: MARK_NOT_INTERESTED,
@@ -63,7 +63,7 @@ import {
   export const deleteOrganization = (id) => async (dispatch) => {
     try {
       // console.log("Check?", id)
-      let success = await Axios.delete(`/api/organizations/delete-org/${id}`);
+      let success = await Axios.delete(`/organizations/delete-org/${id}`);
   
       dispatch({
         type: DELETE_ORGANIZATION,
@@ -75,7 +75,7 @@ import {
   };
   // export const editOrganization = (orgInfo) => async (dispatch) => {
   //   try {
-  //     let success = await Axios.post("/api/organizations/create-org", orgInfo);
+  //     let success = await Axios.post("/organizations/create-org", orgInfo);
   
   //     dispatch({
   //       type: MARK_NOT_INTERESTED,
@@ -88,7 +88,7 @@ import {
   export const approveOrganization = (orgInfo) => async (dispatch) => {
     try {
       // console.log("Check?")
-      let success = await Axios.put("/api/organizations/approve-org", orgInfo)
+      let success = await Axios.put("/organizations/approve-org", orgInfo)
       dispatch({
         type: APPROVE_ORGANIZATION,
         payload: success.data,

@@ -8,7 +8,7 @@ import {
   export const getRelevantOrganizations = (orgInfo) => async (dispatch) => {
     try {
     //   console.log("step2")
-      let success = await Axios.get("/api/organizations/get-relevant-orgs", orgInfo);
+      let success = await Axios.get("/organizations/get-relevant-orgs", orgInfo);
   
       dispatch({
         type: GET_RELEVANT_ORGANIZATIONS,
@@ -22,7 +22,7 @@ import {
   export const likedOrganization = (orgInfo) => async (dispatch) => {
     try {
         // console.log("liked org", orgInfo)
-      let success = await Axios.put("/api/organizations/like-organization", orgInfo);
+      let success = await Axios.put("/organizations/like-organization", orgInfo);
   
       // console.log("dispatch", success.data)
       dispatch({
@@ -36,7 +36,7 @@ import {
   export const dislikedOrganization = (orgInfo) => async (dispatch) => {
     try {
         // console.log("disliked org", orgInfo)
-      let success = await Axios.put("/api/organizations/dislike-organization", orgInfo);
+      let success = await Axios.put("/organizations/dislike-organization", orgInfo);
   
       dispatch({
         type: DISLIKED_ORGANIZATION,

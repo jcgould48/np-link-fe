@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 
 export const signup = (userInfo) => async (dispatch) => {
   try {
-    await Axios.post("/api/users/sign-up", userInfo);
+    await Axios.post("/users/sign-up", userInfo);
     return Promise.resolve();
   } catch (e) {
     if (e.message) {
@@ -24,7 +24,7 @@ export const signup = (userInfo) => async (dispatch) => {
 
 export const login = (userInfo) => async (dispatch) => {
   try {
-    let success = await Axios.post("/api/users/login", userInfo);
+    let success = await Axios.post("/users/login", userInfo);
 
     let { jwtToken, jwtRefreshToken } = success.data;
 
@@ -70,7 +70,7 @@ export const logout = () => (dispatch) => {
 export const testSignup = (userInfo) => async (dispatch) => {
   try {
     console.log("New User Form", userInfo)
-    await Axios.post("/api/users/sign-up", userInfo);
+    await Axios.post("/users/sign-up", userInfo);
     return Promise.resolve();
   } catch (e) {
     if (e.message) {
