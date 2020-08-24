@@ -60,31 +60,29 @@ export const checkReloadIfTokenExistAndNotExpired = (decoded) => (dispatch) => {
 
 export const logout = () => async(dispatch) => {
   try{
-  await Axios.post("/users/logout");
+  await Axios.get("/users/logout");
+  console.log("logout")
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("jwt-refresh-Token");
   setAuthToken(false);
   History("/login");
-  //window.location.href = "/login";
-  dispatch({
-    type: AUTH_USER_LOGOUT,
-  });
+
   return Promise.resolve();
 } catch (e) {
   return Promise.reject(e);
 }
 };
 
-export const testSignup = (userInfo) => async (dispatch) => {
-  try {
-    console.log("New User Form", userInfo)
-    await Axios.post("/users/sign-up", userInfo);
-    return Promise.resolve();
-  } catch (e) {
-    if (e.message) {
-      return Promise.reject(e.message);
-    } else {
-      return Promise.reject(e.response.data.message);
-    }
-  }
-};
+// export const testSignup = (userInfo) => async (dispatch) => {
+//   try {
+//     console.log("New User Form", userInfo)
+//     await Axios.post("/users/sign-up", userInfo);
+//     return Promise.resolve();
+//   } catch (e) {
+//     if (e.message) {
+//       return Promise.reject(e.message);
+//     } else {
+//       return Promise.reject(e.response.data.message);
+//     }
+//   }
+// };
