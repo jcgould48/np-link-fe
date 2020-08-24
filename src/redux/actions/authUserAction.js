@@ -58,9 +58,9 @@ export const checkReloadIfTokenExistAndNotExpired = (decoded) => (dispatch) => {
   });
 };
 
-export const logout = () => (dispatch) => {
-
-  let success = await Axios.post("/users/logout");
+export const logout = () => async(dispatch) => {
+  try{
+  await Axios.post("/users/logout");
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("jwt-refresh-Token");
   setAuthToken(false);
@@ -69,6 +69,10 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: AUTH_USER_LOGOUT,
   });
+  return Promise.resolve();
+} catch (e) {
+  return Promise.reject(e);
+}
 };
 
 export const testSignup = (userInfo) => async (dispatch) => {
