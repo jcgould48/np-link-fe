@@ -59,6 +59,8 @@ export const checkReloadIfTokenExistAndNotExpired = (decoded) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+
+  let success = await Axios.post("/users/logout");
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("jwt-refresh-Token");
   setAuthToken(false);

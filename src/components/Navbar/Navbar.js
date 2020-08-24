@@ -111,7 +111,8 @@ const Navbar=()=>{
             <ListItemIcon className={classes.listItem}>
               <ExitToApp/>
             </ ListItemIcon>
-            <ListItemText className={classes.listItem}  primary="Logout"/> 
+            <ListItemText className={classes.listItem}  component={Link} 
+            to={'/logout'} primary="Logout"/> 
           </ListItem>
         </List>
         </Box>
