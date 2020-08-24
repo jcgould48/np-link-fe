@@ -11,7 +11,9 @@ import jwt_decode from "jwt-decode";
 
 export const signup = (userInfo) => async (dispatch) => {
   try {
+    console.log("user info", userInfo)
     await Axios.post("/users/sign-up", userInfo);
+    console.log("user info22", userInfo)
     return Promise.resolve();
   } catch (e) {
     if (e.message) {
